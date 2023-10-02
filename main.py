@@ -1,12 +1,15 @@
 import pygame, sys
 from player import *
 from crosshair import *
+from bullets import *
 
 def callfunc():
     screen.fill(bg_color)
     crosshair.update()
     player.mousepoint()
+    bullet.shoot(screen_width, screen_height)
     player_group.draw(screen)
+    bullet_group.draw(screen)
     crosshair_group.draw(screen)
 
 pygame.init()
@@ -26,6 +29,10 @@ player_group.add(player)
 crosshair = Crosshair(screen_width / 2, screen_height / 2 - 50, 'zombie_crosshair.png')
 crosshair_group = pygame.sprite.Group()
 crosshair_group.add(crosshair)
+
+bullet = Bullet(screen_width / 2, screen_height / 2 - 50, 'bullet.png')
+bullet_group = pygame.sprite.Group()
+bullet_group.add(bullet)
 
 while True:
     for event in pygame.event.get():
