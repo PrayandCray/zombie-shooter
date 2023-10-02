@@ -8,11 +8,13 @@ screen_width = 1280
 screen_height = 960
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Zombie Shooter')
+pygame.mouse.set_visible(False)
+bg_color = pygame.Color('grey12')
 
-player = Player(screen_width / 2 - (188/2), screen_height / 2 - (160/2), 'player.png')
-player.rect.move_ip(player.x, player.y)
+player = Player(screen_width / 2, screen_height / 2 - 50, 'player.png')
 player_group = pygame.sprite.Group()
 player_group.add(player)
+
 
 while True:
     for event in pygame.event.get():
@@ -20,6 +22,8 @@ while True:
             pygame.quit()
             sys.exit()
 
+    screen.fill(bg_color)
+    player.mousepoint()
     player_group.draw(screen)
 
     pygame.display.flip()
