@@ -7,7 +7,6 @@ def callfunc():
     screen.fill(bg_color)
     crosshair.update()
     player.mousepoint()
-    bullet.shoot(screen_width, screen_height)
     player_group.draw(screen)
     bullet_group.draw(screen)
     crosshair_group.draw(screen)
@@ -38,8 +37,14 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
-
+            sys.exit()                
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                bullet.shoot(screen_width, screen_height)
+                bullet.pos.x += bullet.x_vel
+                bullet.pos.y += bullet.y_vel
+                bullet.rect.center = bullet.pos
+                
     callfunc()
 
     pygame.display.flip()
